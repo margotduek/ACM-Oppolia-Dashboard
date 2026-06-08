@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oppolia · Reporte de Campaña</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#FAF8F4;color:#2A2724;font-family:'Helvetica Neue',Arial,sans-serif;
+ line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:48px 28px 80px}
+.kicker{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#C9A24B;font-weight:700}
+h1{font-size:34px;font-weight:300;letter-spacing:-.5px;margin:6px 0 2px}
+h1 b{font-weight:700}
+.sub{color:#8A8378;font-size:13px}
+.rule{height:1px;background:#E7E1D7;margin:26px 0}
+.gold-rule{height:2px;width:54px;background:#C9A24B;margin:16px 0 30px}
+h2{font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin:42px 0 4px}
+h2 .n{color:#C9A24B;margin-right:10px}
+.h2sub{color:#8A8378;font-size:12.5px;margin-bottom:18px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi{background:#FFFFFF;border:1px solid #E7E1D7;border-radius:12px;padding:18px 16px}
+.kpi .v{font-size:30px;font-weight:700;letter-spacing:-1px}
+.kpi .l{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;margin-top:4px}
+.kpi .d{font-size:11.5px;color:#8A8378;margin-top:6px}
+.kpi.hl{background:#2A2724;color:#fff;border-color:#2A2724}
+.kpi.hl .l,.kpi.hl .d{color:#CFC8BC}
+.card{background:#FFFFFF;border:1px solid #E7E1D7;border-radius:14px;padding:24px 26px;margin-top:16px}
+.flex{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.flex>.col{flex:1;min-width:230px}
+.legend{list-style:none;font-size:12.5px}
+.legend li{display:flex;align-items:center;gap:9px;padding:4px 0}
+.legend .dot{width:11px;height:11px;border-radius:3px;flex:none}
+.legend .lv{margin-left:auto;font-weight:700}
+.bars{display:flex;flex-direction:column;gap:9px}
+.bar-row{display:flex;align-items:center;gap:12px;font-size:12.5px}
+.bar-lab{width:188px;flex:none;color:#2A2724}
+.bar-track{flex:1;background:#F0EBE2;border-radius:6px;height:16px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px}
+.bar-val{width:74px;text-align:right;font-weight:700;flex:none}
+.callout{background:linear-gradient(180deg,#fff, #FBF7EE);border:1px solid #C9A24B;
+ border-left:4px solid #C9A24B;border-radius:12px;padding:22px 24px;margin-top:18px}
+.callout .big{font-size:19px;font-weight:300;line-height:1.45}
+.callout .big b{font-weight:700}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+.ins{background:#FFFFFF;border:1px solid #E7E1D7;border-radius:12px;padding:20px}
+.ins .tag{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block}
+.ins .big{font-size:32px;font-weight:700;margin:12px 0 2px;letter-spacing:-1px}
+.ins p{font-size:12.5px;color:#54504A}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+th{text-align:left;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;
+ font-weight:700;padding:10px 10px;border-bottom:2px solid #E7E1D7}
+td{padding:11px 10px;border-bottom:1px solid #E7E1D7}
+th.r,td.r{text-align:right}
+tr.win td{background:#F4F8F2}
+.pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.q{background:#FFFFFF;border:1px solid #E7E1D7;border-radius:11px;padding:15px 17px;font-size:13px}
+.q .txt{font-style:italic;color:#2A2724}
+.q .meta{font-size:10.5px;color:#8A8378;margin-top:8px;letter-spacing:.3px}
+.q.bad{border-left:3px solid #C97B5A}
+.q.good{border-left:3px solid #2E7D54}
+.rec{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid #E7E1D7}
+.rec .num{font-size:13px;font-weight:700;color:#fff;background:#C9A24B;width:26px;height:26px;border-radius:50%;
+ display:flex;align-items:center;justify-content:center;flex:none}
+.rec .t{font-weight:700;font-size:14px;margin-bottom:2px}
+.rec .d{font-size:12.5px;color:#54504A}
+.foot{margin-top:50px;padding-top:20px;border-top:1px solid #E7E1D7;font-size:11px;color:#8A8378;display:flex;justify-content:space-between}
+.tl{display:flex;gap:18px;font-size:11.5px;margin:10px 0 2px}
+.tl span{display:flex;align-items:center;gap:6px;color:#8A8378}
+.tl i{width:16px;height:3px;border-radius:2px;display:inline-block}
+.badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+ padding:4px 11px;border-radius:20px;border:1px solid #C9A24B;color:#C9A24B}
+.step{background:#FFFFFF;border:1px solid #E7E1D7;border-radius:14px;padding:0;margin-top:16px;overflow:hidden}
+.step-head{display:flex;gap:15px;align-items:center;padding:18px 22px;background:#2A2724;color:#fff}
+.step-n{font-size:15px;font-weight:700;color:#2A2724;background:#C9A24B;width:34px;height:34px;border-radius:9px;
+ display:flex;align-items:center;justify-content:center;flex:none}
+.step-head .t{font-weight:700;font-size:15.5px}
+.step-head .s{font-size:11.5px;color:#CFC8BC;margin-top:1px}
+.step-body{padding:18px 22px 20px}
+.substep{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed #E7E1D7;font-size:13px}
+.substep:last-child{border-bottom:none}
+.substep .sn{font-weight:700;color:#C9A24B;flex:none;width:20px}
+.substep code{background:#F3EFE7;border-radius:4px;padding:1px 6px;font-size:11.5px;color:#6B5E3A;font-family:monospace}
+.kbd{background:#F3EFE7;border:1px solid #E7E1D7;border-radius:5px;padding:1px 7px;font-size:11px;color:#54504A;white-space:nowrap}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #E7E1D7;border-radius:9px;overflow:hidden;margin:10px 0 4px}
+.ba>div{padding:9px 13px;font-size:12px}
+.ba .h{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-bottom:3px}
+.ba .antes{background:#FBF1EF;border-right:1px solid #E7E1D7}
+.ba .antes .h{color:#A33B3B}
+.ba .desp{background:#F2F7EF}
+.ba .desp .h{color:#2E7D54}
+.goldbox{background:#FBF7EE;border:1px solid #C9A24B;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:13px}
+.goldbox b{color:#8A6B1E}
+.chk{columns:2;column-gap:26px;font-size:13px;margin-top:6px}
+.chk div{padding:6px 0;break-inside:avoid;display:flex;gap:9px;align-items:flex-start}
+.chk .box{width:15px;height:15px;border:2px solid #C9A24B;border-radius:4px;flex:none;margin-top:2px}
+@media (max-width:720px){.kpis,.cards3{grid-template-columns:1fr 1fr}.quotes{grid-template-columns:1fr}.bar-lab{width:120px}.chk{columns:1}.ba{grid-template-columns:1fr}}
+@media print{body{background:#fff}.card,.kpi,.ins,.step{break-inside:avoid}}
+</style></head><body><div class="wrap">
+<span class="kicker">Oppolia México · Reporte de Campaña</span>
+<h1>Resultados de <b>Generación de Leads</b></h1>
+<div class="sub">Meta Ads (Facebook + Instagram) · 22 may – 7 jun 2026</div>
+<div class="gold-rule"></div>
+
+<div class="kpis">
+  <div class="kpi"><div class="v">$4,795</div><div class="l">Inversión</div><div class="d">en pauta</div></div>
+  <div class="kpi"><div class="v">79</div><div class="l">Leads generados</div><div class="d">29,985 personas alcanzadas</div></div>
+  <div class="kpi hl"><div class="v">$61</div><div class="l">Costo por lead</div><div class="d">muy competitivo para el giro</div></div>
+  <div class="kpi"><div class="v">2.44%</div><div class="l">CTR</div><div class="d">interés sano en el anuncio</div></div>
+</div>
+
+<div class="callout"><div class="big">El costo por lead es <b>bueno</b> — el problema no es cuánto cuestan, sino <b>quién está llegando</b>. La mayoría no es todavía tu cliente de lujo a la medida.</div></div>
+
+<h2><span class="n">01</span>Calidad de los leads</h2>
+<div class="h2sub">De los 79 leads, así se reparten por intención real (según el seguimiento telefónico).</div>
+<div class="card"><div class="flex">
+  <div style="flex:none"><svg viewBox="0 0 190 190" width="190" height="190"><circle cx="95.0" cy="95.0" r="80.0" fill="none" stroke="#2E7D54" stroke-width="30" stroke-dasharray="82.72 419.94" stroke-dashoffset="0.00" transform="rotate(-90 95.0 95.0)"/><circle cx="95.0" cy="95.0" r="80.0" fill="none" stroke="#9AA0A6" stroke-width="30" stroke-dasharray="108.17 394.49" stroke-dashoffset="-82.72" transform="rotate(-90 95.0 95.0)"/><circle cx="95.0" cy="95.0" r="80.0" fill="none" stroke="#C9A24B" stroke-width="30" stroke-dasharray="76.35 426.30" stroke-dashoffset="-190.88" transform="rotate(-90 95.0 95.0)"/><circle cx="95.0" cy="95.0" r="80.0" fill="none" stroke="#A33B3B" stroke-width="30" stroke-dasharray="235.42 267.23" stroke-dashoffset="-267.23" transform="rotate(-90 95.0 95.0)"/><text x="95.0" y="93.0" text-anchor="middle" font-size="34" font-weight="700" fill="#2A2724">79</text><text x="95.0" y="113.0" text-anchor="middle" font-size="11" fill="#8A8378" letter-spacing="1">LEADS</text></svg></div>
+  <div class="col"><ul class="legend"><li><span class="dot" style="background:#2E7D54"></span>Aprovechables (interioristas + interesados)<span class="lv">13</span></li><li><span class="dot" style="background:#9AA0A6"></span>Nuevos por trabajar<span class="lv">17</span></li><li><span class="dot" style="background:#C9A24B"></span>Confundidos ("pensaron muebles")<span class="lv">12</span></li><li><span class="dot" style="background:#A33B3B"></span>Perdidos (sin perfil / no contactables)<span class="lv">37</span></li></ul>
+  <div style="font-size:12.5px;color:#8A8378;margin-top:10px">Solo <b style="color:#2A2724">13 de 79</b> leads (16%) son hoy aprovechables. El resto se pierde por confusión de marca o por no lograr contacto.</div></div>
+</div></div>
+
+<h2><span class="n">02</span>Qué está pasando</h2>
+<div class="cards3">
+  <div class="ins"><span class="tag" style="background:#FBEFD9;color:#9A6B1E">Confusión de marca</span>
+   <div class="big" style="color:#C9A24B">13</div>
+   <p>leads dijeron que <b>pensaban que eran una tienda de muebles o en línea</b>. Es lo contrario a tu posicionamiento de lujo a la medida — y explica por qué llega gente fuera de perfil.</p></div>
+  <div class="ins"><span class="tag" style="background:#E9F1E4;color:#2E7D54">Oportunidad showroom</span>
+   <div class="big" style="color:#2E7D54">9</div>
+   <p>leads quieren <b>conocer el showroom</b> y están esperando la apertura. Es un pipeline tibio listo para reactivar el día de la inauguración.</p></div>
+  <div class="ins"><span class="tag" style="background:#EDEAE3;color:#6B6457">Público premium</span>
+   <div class="big">3</div>
+   <p><b>interioristas</b> llegaron buscando a Oppolia para sus proyectos — justo el público que tu estrategia define como prioritario.</p></div>
+</div>
+
+<h2><span class="n">03</span>La voz de los leads</h2>
+<div class="h2sub">Frases textuales del seguimiento. A la izquierda, la confusión; a la derecha, el interés real que sí existe.</div>
+<div class="quotes"><div class="q bad"><div class="txt">“Pensó que somos tienda de muebles, pero quedó en venir cuando esté el showroom.”</div><div class="meta">Lead B2B · habitaciones</div></div><div class="q bad"><div class="txt">“Le dio curiosidad qué somos… pensó que es tienda de muebles.”</div><div class="meta">Lead B2C · closets</div></div><div class="q bad"><div class="txt">“No tenía idea de qué somos, le mandé la liga web.”</div><div class="meta">Lead B2C · habitaciones</div></div><div class="q bad"><div class="txt">“Le gustaría conocer primero el showroom, pensó que somos tienda en línea.”</div><div class="meta">Lead B2C · integral</div></div><div class="q good"><div class="txt">“Interiorista, le gustaría incluirnos en proyectos; cuando se inaugure el showroom quiere vernos.”</div><div class="meta">Lead B2B · estudios</div></div><div class="q good"><div class="txt">“Interés en closets, pero quiere conocerlos en el showroom.”</div><div class="meta">Lead B2C · closets</div></div><div class="q good"><div class="txt">“Me pidió la dirección y quedé en avisarle para la inauguración.”</div><div class="meta">Lead B2C · cocinas</div></div><div class="q good"><div class="txt">“Me pide información y la invitación a la apertura del showroom.”</div><div class="meta">Lead B2B · baños</div></div></div>
+
+<h2><span class="n">04</span>Recomendaciones</h2>
+<div class="card" style="padding-top:6px;padding-bottom:6px"><div class="rec"><div class="num">1</div><div><div class="t">Corregir el mensaje: lujo a la medida, no “muebles”</div><div class="d">El anuncio actual hace que la gente espere una mueblería. Hay que comunicar desde el primer segundo que Oppolia es <b>diseño y carpintería de lujo a la medida</b> (cocinas, closets, interiores), distribuidor oficial exclusivo. Esto filtra solo: quien busca muebles baratos no entra.</div></div></div><div class="rec"><div class="num">2</div><div><div class="t">Preparar la reactivación para la apertura del showroom</div><div class="d">Hay <b>9 leads tibios esperando la inauguración</b> y varios más que piden “verlo físico”. Vale la pena una lista de invitados y un evento de apertura: ese es tu momento de mayor conversión, porque el KPI de la marca es justamente la cita al showroom.</div></div></div><div class="rec"><div class="num">3</div><div><div class="t">Ruta VIP para interioristas y arquitectos</div><div class="d">Ya están llegando interioristas que quieren a Oppolia para sus proyectos —exactamente el público premium que define tu estrategia—. Merecen un trato distinto (catálogo profesional, condiciones B2B) y respuesta inmediata.</div></div></div><div class="rec"><div class="num">4</div><div><div class="t">Responder más rápido y por WhatsApp</div><div class="d"><b>37% de los leads no se pudieron contactar.</b> Un lead premium que llena un formulario y no recibe respuesta en minutos se enfría. Contacto inmediato por WhatsApp + llamada el mismo día sube mucho la conversión.</div></div></div></div>
+
+<div class="foot"><span>Oppolia México · Diseño inteligente. Calidad sin concesiones.</span><span>Generado 7 jun 2026</span></div>
+</div></body></html>
