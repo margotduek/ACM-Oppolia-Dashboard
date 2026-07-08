@@ -5,9 +5,6 @@
 *.token
 *.key
 
-# Generated data (regenerated on every fetch)
-data.json
-
 # macOS / Python
 .DS_Store
 __pycache__/

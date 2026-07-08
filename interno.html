@@ -122,11 +122,24 @@ tr.win td{background:#F4F8F2}
 .chk .box{width:15px;height:15px;border:2px solid #C9A24B;border-radius:4px;flex:none;margin-top:2px}
 @media (max-width:720px){.kpis,.cards3{grid-template-columns:1fr 1fr}.quotes{grid-template-columns:1fr}.bar-lab{width:120px}.chk{columns:1}.ba{grid-template-columns:1fr}}
 @media print{body{background:#fff}.card,.kpi,.ins,.step{break-inside:avoid}}
+.datefilter{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:#FFFFFF;border:1px solid #E7E1D7;
+ border-radius:12px;padding:14px 18px;margin:20px 0}
+.datefilter label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700}
+.datefilter input[type=date]{border:1px solid #E7E1D7;border-radius:7px;padding:6px 9px;font-size:13px;
+ font-family:inherit;color:#2A2724;background:#FAF8F4}
+.datefilter .fnote{font-size:11.5px;color:#8A8378;flex-basis:100%}
+@media print{.datefilter{display:none}}
 </style></head><body><div class="wrap">
 <span class="kicker">Uso interno · Converging Works</span>
 <h1>Diagnóstico de <b>Pauta</b> — Oppolia</h1>
-<div class="sub">Optimización de campaña de leads · actualizado 29 jun 2026 · <span class="badge">para Iván</span></div>
+<div class="sub">Optimización de campaña de leads · <span id="period-label">actualizado 29 jun 2026</span> · <span class="badge">para Iván</span></div>
 <div class="gold-rule"></div>
+
+<div class="datefilter">
+  <label>Desde <input type="date" id="date-start"></label>
+  <label>Hasta <input type="date" id="date-end"></label>
+  <span class="fnote">El filtro recalcula gasto, leads, CPL, CTR, FB/IG, región, edad/género, el embudo y la tendencia diaria. El diagnóstico de configuración, el playbook, el checklist y la calidad por creativo quedan fijos al último corte revisado a mano.</span>
+</div>
 
 <div class="alert"><div class="ic">🚨</div>
  <div><div class="t">El cuello de botella ya no es la pauta — es el seguimiento</div>
@@ -135,7 +148,7 @@ tr.win td{background:#F4F8F2}
 
 <h2><span class="n">★</span>¿Funcionaron los cambios? <span style="color:#C9A24B;font-weight:400;text-transform:none;letter-spacing:0">· 8–28 jun</span></h2>
 <div class="h2sub">Comparativo contra el periodo anterior (22 may–7 jun), después de aplicar los cambios el 8-jun. Ya con 3 semanas de datos.</div>
-<div class="cmp"><div class="cmpcard"><div class="l">Costo por lead</div><div class="row"><span class="before">$61</span><span class="arrow">→</span><span class="after">$69</span></div><span class="tag" style="color:#9A6B1E;background:#FBEFD9">▲ leve · aceptable</span></div><div class="cmpcard"><div class="l">Leads por día</div><div class="row"><span class="before">4.6</span><span class="arrow">→</span><span class="after">3.4</span></div><span class="tag" style="color:#9A6B1E;background:#FBEFD9">▼ menos volumen</span></div><div class="cmpcard"><div class="l">CTR</div><div class="row"><span class="before">2.44%</span><span class="arrow">→</span><span class="after">2.59%</span></div><span class="tag" style="color:#2E7D54;background:#E9F1E4">▲ igual/mejor</span></div><div class="cmpcard"><div class="l">Calidad de lead</div><div class="row"><span class="before">baja</span><span class="arrow">→</span><span class="after">alta</span></div><span class="tag" style="color:#2E7D54;background:#E9F1E4">▲ mejoró</span></div></div>
+<div class="cmp"><div class="cmpcard"><div class="l">Costo por lead</div><div class="row"><span class="before" id="cmp-cpl-before">$61</span><span class="arrow">→</span><span class="after" id="cmp-cpl-after">$69</span></div><span class="tag" id="cmp-cpl-tag" style="color:#9A6B1E;background:#FBEFD9">▲ leve · aceptable</span></div><div class="cmpcard"><div class="l">Leads por día</div><div class="row"><span class="before" id="cmp-leadsday-before">4.6</span><span class="arrow">→</span><span class="after" id="cmp-leadsday-after">3.4</span></div><span class="tag" id="cmp-leadsday-tag" style="color:#9A6B1E;background:#FBEFD9">▼ menos volumen</span></div><div class="cmpcard"><div class="l">CTR</div><div class="row"><span class="before" id="cmp-ctr-before">2.44%</span><span class="arrow">→</span><span class="after" id="cmp-ctr-after">2.59%</span></div><span class="tag" id="cmp-ctr-tag" style="color:#2E7D54;background:#E9F1E4">▲ igual/mejor</span></div><div class="cmpcard"><div class="l">Calidad de lead</div><div class="row"><span class="before">baja</span><span class="arrow">→</span><span class="after">alta</span></div><span class="tag" style="color:#2E7D54;background:#E9F1E4">▲ mejoró</span></div></div>
 <div class="callout"><div class="big">Veredicto: <b>la calidad subió, el volumen bajó</b>. Lo bueno: el formulario calificador jala perfil correcto (<b>34/36 en CDMX</b>) e Instagram <b>ya rinde parejo</b> que Facebook. Lo matizado: con 3 semanas el CPL quedó en <b>$69</b> (vs $61 previo, +13%) y el volumen cayó a <b>3.4 leads/día</b> (vs 4.6) — <b>pero ojo: la causa principal es que se redujo el gasto la última semana</b> (de ~$240 a ~$100/día). No es que la campaña dejara de rendir, es que se le quitó combustible. Dónde está el dinero mal puesto: (1) <b>edad</b> — el oro es <b>55+</b> (65+ a $41 CPL, 55-64 a $59); el 25-34 sigue gastando caro ($79 CPL) — sube el piso de edad; (2) <b>ubicación</b> — EdoMex recibe más gasto ($2,528) que CDMX ($2,409) y rinde menos; reasigna a colonias premium de CDMX.</div></div>
 
 <div class="two">
@@ -154,23 +167,23 @@ tr.win td{background:#F4F8F2}
 <div class="h2sub" style="margin-bottom:0">Abajo: el diagnóstico base y el playbook completo (siguen vigentes — los cambios solo se hicieron a medias).</div>
 
 <div class="kpis">
-  <div class="kpi"><div class="v">$4,795</div><div class="l">Spend</div></div>
-  <div class="kpi"><div class="v">79</div><div class="l">Leads</div></div>
-  <div class="kpi hl"><div class="v">$61</div><div class="l">CPL</div><div class="d">bueno; foco en calidad</div></div>
-  <div class="kpi"><div class="v">2.44%</div><div class="l">CTR</div><div class="d">CPC $3.95 · CPM $96</div></div>
+  <div class="kpi"><div class="v" id="kpi2-spend">$4,795</div><div class="l">Spend</div></div>
+  <div class="kpi"><div class="v" id="kpi2-leads">79</div><div class="l">Leads</div></div>
+  <div class="kpi hl"><div class="v" id="kpi2-cpl">$61</div><div class="l">CPL</div><div class="d">bueno; foco en calidad</div></div>
+  <div class="kpi"><div class="v" id="kpi2-ctr">2.44%</div><div class="l">CTR</div><div class="d" id="kpi2-ctr-detail">CPC $3.95 · CPM $96</div></div>
 </div>
 <div class="callout"><div class="big">El CPL no es el problema. El problema es <b>la calidad del lead</b>: la combinación de <b>Advantage+ activado</b> + <b>intereses de muebles</b> + <b>formulario sin filtro</b> está dejando entrar tráfico fuera de perfil.</div></div>
 
 <h2><span class="n">01</span>Embudo de la campaña</h2>
 <div class="h2sub">De 49,729 impresiones a 13 leads aprovechables. La comunidad es nueva (87 seguidores).</div>
-<div class="card"><div class="funnel"><div class="frow"><div class="flab">Impresiones</div><div class="fbarwrap"><div class="fbar" style="width:100.0%;background:#2A2724">49,729</div></div></div><div class="frow"><div class="flab">Clics en enlace</div><div class="fbarwrap"><div class="fbar" style="width:6.0%;background:#6B6457">899</div><span class="fconv">1.8% del paso previo</span></div></div><div class="frow"><div class="flab">Leads</div><div class="fbarwrap"><div class="fbar" style="width:6.0%;background:#C9A24B">79</div><span class="fconv">8.8% del paso previo</span></div></div><div class="frow"><div class="flab">Aprovechables</div><div class="fbarwrap"><div class="fbar" style="width:6.0%;background:#2E7D54">13</div><span class="fconv">16.5% del paso previo</span></div></div></div>
-<div class="mini">El gran salto a vigilar es de <b>79 leads</b> a <b>13 aprovechables</b> (16%). Ahí es donde el filtro de audiencia y formulario hace la diferencia.</div></div>
+<div class="card"><div class="funnel"><div id="funnel-dynamic"><div class="frow"><div class="flab">Impresiones</div><div class="fbarwrap"><div class="fbar" style="width:100.0%;background:#2A2724">49,729</div></div></div><div class="frow"><div class="flab">Clics en enlace</div><div class="fbarwrap"><div class="fbar" style="width:6.0%;background:#6B6457">899</div><span class="fconv">1.8% del paso previo</span></div></div><div class="frow"><div class="flab">Leads</div><div class="fbarwrap"><div class="fbar" style="width:6.0%;background:#C9A24B">79</div><span class="fconv">8.8% del paso previo</span></div></div></div><div class="frow"><div class="flab">Aprovechables</div><div class="fbarwrap"><div class="fbar" style="width:6.0%;background:#2E7D54">13</div><span class="fconv">16.5% del paso previo</span></div></div></div>
+<div class="mini">El gran salto a vigilar es de leads a aprovechables. Ahí es donde el filtro de audiencia y formulario hace la diferencia. <i>El paso "Aprovechables" es categorización manual del seguimiento telefónico y no cambia con el filtro de fecha.</i></div></div>
 
 <h2><span class="n">02</span>Rendimiento por creativo</h2>
 <div class="h2sub">Ordenado por inversión. Cruce de costo (CPL) con calidad observada en el seguimiento.</div>
 <div class="card" style="padding:10px 18px">
 <table><thead><tr><th>Creativo</th><th class="r">Gasto</th><th class="r">Impr.</th><th class="r">CTR</th><th class="r">Leads</th><th class="r">CPL</th><th class="r">Lectura</th></tr></thead>
-<tbody><tr class=""><td><b>B2C/CARRUSEL-CUARTOS</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$1,766</td><td class="r">25,937</td><td class="r">2.29%</td><td class="r"><b>40</b></td><td class="r"><b>$44</b></td><td class="r"><span class="pill" style="background:#E9F1E4;color:#2E7D54">eficiente</span></td></tr><tr class=""><td><b>B2B/CARRUSEL-BAÑOS</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$1,178</td><td class="r">9,513</td><td class="r">2.18%</td><td class="r"><b>13</b></td><td class="r"><b>$91</b></td><td class="r"><span class="pill" style="background:#FBEFD9;color:#9A6B1E">revisar</span></td></tr><tr class="win"><td><b>B2B/CARRUSEL-RECÁMARAS</b><div style="font-size:10.5px;color:#8A8378">⭐ mejor mezcla costo+calidad (trae interioristas)</div></td><td class="r">$739</td><td class="r">6,914</td><td class="r">2.49%</td><td class="r"><b>18</b></td><td class="r"><b>$41</b></td><td class="r"><span class="pill" style="background:#E9F1E4;color:#2E7D54">eficiente</span></td></tr><tr class=""><td><b>B2B/CARRUSEL-COCINAS</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$356</td><td class="r">3,419</td><td class="r">3.54%</td><td class="r"><b>2</b></td><td class="r"><b>$178</b></td><td class="r"><span class="pill" style="background:#FBE3E0;color:#A33B3B">caro · apagar</span></td></tr><tr class=""><td><b>B2B/CARRUSEL-GENERAL</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$182</td><td class="r">870</td><td class="r">2.87%</td><td class="r"><b>0</b></td><td class="r"><b>—</b></td><td class="r"><span class="pill" style="background:#FBE3E0;color:#A33B3B">0 leads · apagar</span></td></tr><tr class=""><td><b>B2B/VIDEO1</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$147</td><td class="r">424</td><td class="r">2.12%</td><td class="r"><b>2</b></td><td class="r"><b>$73</b></td><td class="r"><span class="pill" style="background:#EDEAE3;color:#6B6457">ok</span></td></tr><tr class=""><td><b>B2C/CARRUSEL-COCINAS</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$133</td><td class="r">960</td><td class="r">5.31%</td><td class="r"><b>3</b></td><td class="r"><b>$44</b></td><td class="r"><span class="pill" style="background:#E9F1E4;color:#2E7D54">eficiente</span></td></tr><tr class=""><td><b>B2C/CARRUSEL-GENERAL</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$96</td><td class="r">950</td><td class="r">1.37%</td><td class="r"><b>0</b></td><td class="r"><b>—</b></td><td class="r"><span class="pill" style="background:#FBE3E0;color:#A33B3B">0 leads · apagar</span></td></tr><tr class=""><td><b>B2B/VIDEO2</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$81</td><td class="r">233</td><td class="r">5.58%</td><td class="r"><b>1</b></td><td class="r"><b>$81</b></td><td class="r"><span class="pill" style="background:#FBEFD9;color:#9A6B1E">revisar</span></td></tr></tbody></table></div>
+<tbody id="table-creativos"><tr class=""><td><b>B2C/CARRUSEL-CUARTOS</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$1,766</td><td class="r">25,937</td><td class="r">2.29%</td><td class="r"><b>40</b></td><td class="r"><b>$44</b></td><td class="r"><span class="pill" style="background:#E9F1E4;color:#2E7D54">eficiente</span></td></tr><tr class=""><td><b>B2B/CARRUSEL-BAÑOS</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$1,178</td><td class="r">9,513</td><td class="r">2.18%</td><td class="r"><b>13</b></td><td class="r"><b>$91</b></td><td class="r"><span class="pill" style="background:#FBEFD9;color:#9A6B1E">revisar</span></td></tr><tr class="win"><td><b>B2B/CARRUSEL-RECÁMARAS</b><div style="font-size:10.5px;color:#8A8378">⭐ mejor mezcla costo+calidad (trae interioristas)</div></td><td class="r">$739</td><td class="r">6,914</td><td class="r">2.49%</td><td class="r"><b>18</b></td><td class="r"><b>$41</b></td><td class="r"><span class="pill" style="background:#E9F1E4;color:#2E7D54">eficiente</span></td></tr><tr class=""><td><b>B2B/CARRUSEL-COCINAS</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$356</td><td class="r">3,419</td><td class="r">3.54%</td><td class="r"><b>2</b></td><td class="r"><b>$178</b></td><td class="r"><span class="pill" style="background:#FBE3E0;color:#A33B3B">caro · apagar</span></td></tr><tr class=""><td><b>B2B/CARRUSEL-GENERAL</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$182</td><td class="r">870</td><td class="r">2.87%</td><td class="r"><b>0</b></td><td class="r"><b>—</b></td><td class="r"><span class="pill" style="background:#FBE3E0;color:#A33B3B">0 leads · apagar</span></td></tr><tr class=""><td><b>B2B/VIDEO1</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$147</td><td class="r">424</td><td class="r">2.12%</td><td class="r"><b>2</b></td><td class="r"><b>$73</b></td><td class="r"><span class="pill" style="background:#EDEAE3;color:#6B6457">ok</span></td></tr><tr class=""><td><b>B2C/CARRUSEL-COCINAS</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$133</td><td class="r">960</td><td class="r">5.31%</td><td class="r"><b>3</b></td><td class="r"><b>$44</b></td><td class="r"><span class="pill" style="background:#E9F1E4;color:#2E7D54">eficiente</span></td></tr><tr class=""><td><b>B2C/CARRUSEL-GENERAL</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$96</td><td class="r">950</td><td class="r">1.37%</td><td class="r"><b>0</b></td><td class="r"><b>—</b></td><td class="r"><span class="pill" style="background:#FBE3E0;color:#A33B3B">0 leads · apagar</span></td></tr><tr class=""><td><b>B2B/VIDEO2</b><div style="font-size:10.5px;color:#8A8378"></div></td><td class="r">$81</td><td class="r">233</td><td class="r">5.58%</td><td class="r"><b>1</b></td><td class="r"><b>$81</b></td><td class="r"><span class="pill" style="background:#FBEFD9;color:#9A6B1E">revisar</span></td></tr></tbody></table></div>
 
 <h2><span class="n">03</span>Calidad de lead por creativo</h2>
 <div class="h2sub">B2C/Cuartos da volumen pero mucho confundido/no-contactable. B2B/Recámaras da los leads calificados.</div>
@@ -179,11 +192,11 @@ tr.win td{background:#F4F8F2}
 <h2><span class="n">04</span>Audiencia: edad y género</h2>
 <div class="h2sub">Quién está dejando leads. El ADN define NSE A/B de 35–65 — pero 25–34 sigue consumiendo presupuesto.</div>
 <div class="card"><div class="grid2">
- <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:10px">Leads por edad</div><div class="bars"><div class="bar-row"><div class="bar-lab">25-34</div><div class="bar-track"><div class="bar-fill" style="width:86.4%;background:#C97B5A"></div></div><div class="bar-val">19 leads</div></div><div class="bar-row"><div class="bar-lab">35-44</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#C9A24B"></div></div><div class="bar-val">22 leads</div></div><div class="bar-row"><div class="bar-lab">45-54</div><div class="bar-track"><div class="bar-fill" style="width:86.4%;background:#C9A24B"></div></div><div class="bar-val">19 leads</div></div><div class="bar-row"><div class="bar-lab">55-64</div><div class="bar-track"><div class="bar-fill" style="width:54.5%;background:#B89248"></div></div><div class="bar-val">12 leads</div></div><div class="bar-row"><div class="bar-lab">65+</div><div class="bar-track"><div class="bar-fill" style="width:31.8%;background:#E0A458"></div></div><div class="bar-val">7 leads</div></div></div>
-  <div class="mini">✓ Núcleo on-target (35–64): <b>53 leads</b>. ✕ Fuera de target (25–34): <b>19 leads</b> y <b>$870</b> gastados. <b>Acción:</b> piso de edad en 35.</div></div>
+ <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:10px">Leads por edad</div><div class="bars" id="bars-edad-2"><div class="bar-row"><div class="bar-lab">25-34</div><div class="bar-track"><div class="bar-fill" style="width:86.4%;background:#C97B5A"></div></div><div class="bar-val">19 leads</div></div><div class="bar-row"><div class="bar-lab">35-44</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#C9A24B"></div></div><div class="bar-val">22 leads</div></div><div class="bar-row"><div class="bar-lab">45-54</div><div class="bar-track"><div class="bar-fill" style="width:86.4%;background:#C9A24B"></div></div><div class="bar-val">19 leads</div></div><div class="bar-row"><div class="bar-lab">55-64</div><div class="bar-track"><div class="bar-fill" style="width:54.5%;background:#B89248"></div></div><div class="bar-val">12 leads</div></div><div class="bar-row"><div class="bar-lab">65+</div><div class="bar-track"><div class="bar-fill" style="width:31.8%;background:#E0A458"></div></div><div class="bar-val">7 leads</div></div></div>
+  <div class="mini">✓ Núcleo on-target (35–64): <b id="edad-nucleo-leads">53 leads</b>. ✕ Fuera de target (25–34): <b id="edad-fuera-leads">19 leads</b> y <b id="edad-fuera-spend">$870</b> gastados. <b>Acción:</b> piso de edad en 35.</div></div>
  <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:10px">Leads por género</div>
-  <div class="flex"><div style="flex:none"><svg viewBox="0 0 150 150" width="150" height="150"><circle cx="75.0" cy="75.0" r="62.0" fill="none" stroke="#C9A24B" stroke-width="26" stroke-dasharray="189.78 199.77" stroke-dashoffset="0.00" transform="rotate(-90 75.0 75.0)"/><circle cx="75.0" cy="75.0" r="62.0" fill="none" stroke="#2A2724" stroke-width="26" stroke-dasharray="199.77 189.78" stroke-dashoffset="-189.78" transform="rotate(-90 75.0 75.0)"/><text x="75.0" y="73.0" text-anchor="middle" font-size="34" font-weight="700" fill="#2A2724">78</text><text x="75.0" y="93.0" text-anchor="middle" font-size="11" fill="#8A8378" letter-spacing="1">LEADS</text></svg></div>
-  <ul class="legend" style="flex:1"><li><span class="dot" style="background:#C9A24B"></span>Mujeres<span class="lv">38</span></li><li><span class="dot" style="background:#2A2724"></span>Hombres<span class="lv">40</span></li></ul></div>
+  <div class="flex"><div style="flex:none"><svg id="donut-genero" viewBox="0 0 150 150" width="150" height="150"><circle cx="75.0" cy="75.0" r="62.0" fill="none" stroke="#C9A24B" stroke-width="26" stroke-dasharray="189.78 199.77" stroke-dashoffset="0.00" transform="rotate(-90 75.0 75.0)"/><circle cx="75.0" cy="75.0" r="62.0" fill="none" stroke="#2A2724" stroke-width="26" stroke-dasharray="199.77 189.78" stroke-dashoffset="-189.78" transform="rotate(-90 75.0 75.0)"/><text x="75.0" y="73.0" text-anchor="middle" font-size="34" font-weight="700" fill="#2A2724">78</text><text x="75.0" y="93.0" text-anchor="middle" font-size="11" fill="#8A8378" letter-spacing="1">LEADS</text></svg></div>
+  <ul class="legend" style="flex:1"><li><span class="dot" style="background:#C9A24B"></span>Mujeres<span class="lv" id="genero-f-val">38</span></li><li><span class="dot" style="background:#2A2724"></span>Hombres<span class="lv" id="genero-m-val">40</span></li></ul></div>
   <div class="mini">Reparto parejo — no hay que ajustar por género.</div></div>
 </div></div>
 
@@ -191,14 +204,14 @@ tr.win td{background:#F4F8F2}
 <div class="h2sub">Dónde se gasta y dónde rinde. Aquí hay desperdicio claro que recortar.</div>
 <div class="card" style="padding:10px 18px;margin-bottom:16px">
 <table><thead><tr><th>Plataforma</th><th class="r">Gasto</th><th class="r">Impr.</th><th class="r">Leads</th><th class="r">CPL</th><th class="r">Acción</th></tr></thead>
-<tbody><tr><td><b>Facebook</b></td><td class="r">$3,842</td><td class="r">46,163</td><td class="r"><b>72</b></td><td class="r"><b>$53</b></td><td class="r"><span class="pill" style="background:#E9F1E4;color:#2E7D54">núcleo</span></td></tr><tr><td><b>Instagram</b></td><td class="r">$950</td><td class="r">3,639</td><td class="r"><b>7</b></td><td class="r"><b>$136</b></td><td class="r"><span class="pill" style="background:#FBEFD9;color:#9A6B1E">caro</span></td></tr><tr><td><b>Audience Network</b></td><td class="r">$19</td><td class="r">66</td><td class="r"><b>0</b></td><td class="r"><b>—</b></td><td class="r"><span class="pill" style="background:#FBE3E0;color:#A33B3B">apagar · 0 leads</span></td></tr></tbody></table></div>
+<tbody id="table-plataforma"><tr><td><b>Facebook</b></td><td class="r">$3,842</td><td class="r">46,163</td><td class="r"><b>72</b></td><td class="r"><b>$53</b></td><td class="r"><span class="pill" style="background:#E9F1E4;color:#2E7D54">núcleo</span></td></tr><tr><td><b>Instagram</b></td><td class="r">$950</td><td class="r">3,639</td><td class="r"><b>7</b></td><td class="r"><b>$136</b></td><td class="r"><span class="pill" style="background:#FBEFD9;color:#9A6B1E">caro</span></td></tr><tr><td><b>Audience Network</b></td><td class="r">$19</td><td class="r">66</td><td class="r"><b>0</b></td><td class="r"><b>—</b></td><td class="r"><span class="pill" style="background:#FBE3E0;color:#A33B3B">apagar · 0 leads</span></td></tr></tbody></table></div>
 <div class="card"><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:10px">Gasto por posición (top 7)</div><div class="bars"><div class="bar-row"><div class="bar-lab" style="width:200px">facebook · feed</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#C9A24B"></div></div><div class="bar-val">$2,437 · 44L</div></div><div class="bar-row"><div class="bar-lab" style="width:200px">instagram · instagram_stories</div><div class="bar-track"><div class="bar-fill" style="width:20.6%;background:#C9A24B"></div></div><div class="bar-val">$503 · 6L</div></div><div class="bar-row"><div class="bar-lab" style="width:200px">facebook · marketplace</div><div class="bar-track"><div class="bar-fill" style="width:16.9%;background:#C9A24B"></div></div><div class="bar-val">$412 · 11L</div></div><div class="bar-row"><div class="bar-lab" style="width:200px">facebook · facebook_reels</div><div class="bar-track"><div class="bar-fill" style="width:13.2%;background:#C9A24B"></div></div><div class="bar-val">$322 · 8L</div></div><div class="bar-row"><div class="bar-lab" style="width:200px">facebook · instream_video</div><div class="bar-track"><div class="bar-fill" style="width:10.6%;background:#C9A24B"></div></div><div class="bar-val">$258 · 2L</div></div><div class="bar-row"><div class="bar-lab" style="width:200px">instagram · feed</div><div class="bar-track"><div class="bar-fill" style="width:10.4%;background:#C9A24B"></div></div><div class="bar-val">$255 · 1L</div></div><div class="bar-row"><div class="bar-lab" style="width:200px">facebook · search</div><div class="bar-track"><div class="bar-fill" style="width:8.9%;background:#C9A24B"></div></div><div class="bar-val">$218 · 6L</div></div></div>
 <div class="mini"><b>Acción:</b> apagar <b>Audience Network</b> ($19, 0 leads) y revisar <b>Instagram</b> (CPL ~$136 vs ~$53 en Facebook). FB Feed + Marketplace son lo más eficiente.</div></div>
 
 <h2><span class="n">06</span>Geografía y dispositivo</h2>
 <div class="h2sub">⚠️ Más presupuesto salió a Estado de México que a CDMX — el objetivo es la zona premium.</div>
 <div class="card"><div class="grid2">
- <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:10px">Gasto y leads por región</div><div class="bars"><div class="bar-row"><div class="bar-lab">CDMX</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#C9A24B"></div></div><div class="bar-val">$2,515 · 0L</div></div><div class="bar-row"><div class="bar-lab">Estado de México</div><div class="bar-track"><div class="bar-fill" style="width:91.3%;background:#C97B5A"></div></div><div class="bar-val">$2,296 · 0L</div></div></div>
+ <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:10px">Gasto y leads por región</div><div class="bars" id="bars-region"><div class="bar-row"><div class="bar-lab">CDMX</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#C9A24B"></div></div><div class="bar-val">$2,515 · 0L</div></div><div class="bar-row"><div class="bar-lab">Estado de México</div><div class="bar-track"><div class="bar-fill" style="width:91.3%;background:#C97B5A"></div></div><div class="bar-val">$2,296 · 0L</div></div></div>
   <div class="mini"><b>Acción:</b> ajustar la segmentación a colonias premium específicas (Paso 2 del playbook) para no derramar a zonas fuera de perfil de EdoMex.</div></div>
  <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:10px">Impresiones por dispositivo</div><div class="bars"><div class="bar-row"><div class="bar-lab">Android</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#2A2724"></div></div><div class="bar-val">29,440</div></div><div class="bar-row"><div class="bar-lab">iPhone</div><div class="bar-track"><div class="bar-fill" style="width:67.9%;background:#2A2724"></div></div><div class="bar-val">19,977</div></div><div class="bar-row"><div class="bar-lab">iPad</div><div class="bar-track"><div class="bar-fill" style="width:1.5%;background:#2A2724"></div></div><div class="bar-val">274</div></div><div class="bar-row"><div class="bar-lab">Escritorio</div><div class="bar-track"><div class="bar-fill" style="width:1.5%;background:#2A2724"></div></div><div class="bar-val">84</div></div><div class="bar-row"><div class="bar-lab">Android tablet</div><div class="bar-track"><div class="bar-fill" style="width:1.5%;background:#2A2724"></div></div><div class="bar-val">93</div></div></div>
   <div class="mini">Casi todo móvil — asegúrate de que el creativo y el formulario se vean perfecto en celular.</div></div>
@@ -229,9 +242,172 @@ tr.win td{background:#F4F8F2}
 <table><thead><tr><th>Métrica</th><th class="r">Hoy</th><th class="r">Meta</th><th>Nota</th></tr></thead>
 <tbody><tr><td><b>Costo por lead (CPL)</b></td><td class="r">$61</td><td class="r" style="color:#2E7D54"><b>$60–95 *</b></td><td style="font-size:11.5px;color:#8A8378">* puede subir un poco; es correcto si sube la calidad</td></tr><tr><td><b>% de leads calificados</b></td><td class="r">~16%</td><td class="r" style="color:#2E7D54"><b>40%+</b></td><td style="font-size:11.5px;color:#8A8378">el verdadero indicador de éxito</td></tr><tr><td><b>% no contactables</b></td><td class="r">37%</td><td class="r" style="color:#2E7D54"><b>&lt;15%</b></td><td style="font-size:11.5px;color:#8A8378">form mejor + respuesta &lt;24 h</td></tr><tr><td><b>CTR</b></td><td class="r">2.44%</td><td class="r" style="color:#2E7D54"><b>&gt;2%</b></td><td style="font-size:11.5px;color:#8A8378">mantener</td></tr><tr><td><b>Frecuencia</b></td><td class="r">1.66</td><td class="r" style="color:#2E7D54"><b>&lt;3</b></td><td style="font-size:11.5px;color:#8A8378">refrescar creativo si sube</td></tr><tr><td><b>Citas agendadas (showroom/asesoría)</b></td><td class="r">sin medir</td><td class="r" style="color:#2E7D54"><b>KPI #1</b></td><td style="font-size:11.5px;color:#8A8378">conectar el dato del seguimiento</td></tr></tbody></table></div>
 
-<h2><span class="n">12</span>Tendencia diaria <span style="color:#C9A24B;font-weight:400;text-transform:none;letter-spacing:0">· 22 may–28 jun</span></h2>
+<h2><span class="n">12</span>Tendencia diaria <span id="trend-range-label" style="color:#C9A24B;font-weight:400;text-transform:none;letter-spacing:0">· 22 may–28 jun</span></h2>
 <div class="h2sub">Inversión vs. leads por día. Se nota el bache tras los cambios del 8-jun (reinicio de aprendizaje), la recuperación, y la <b>caída de inversión de la última semana</b> (26–28 jun, de ~$240 a ~$100/día) que explica el menor volumen.</div>
-<div class="card"><div class="tl"><span><i style="background:#2A2724"></i>Gasto diario ($)</span><span><i style="background:#C9A24B"></i>Leads</span></div><svg viewBox="0 0 720 240" width="100%" ><line x1="34" y1="34" x2="686" y2="34" stroke="#E7E1D7"/><line x1="34" y1="77" x2="686" y2="77" stroke="#E7E1D7"/><line x1="34" y1="120" x2="686" y2="120" stroke="#E7E1D7"/><line x1="34" y1="163" x2="686" y2="163" stroke="#E7E1D7"/><line x1="34" y1="206" x2="686" y2="206" stroke="#E7E1D7"/><polyline points="34,160 53,34 72,74 92,75 111,91 130,79 149,94 168,80 187,116 207,95 226,72 245,99 264,74 283,95 302,162 322,73 341,119 360,118 379,110 398,99 418,123 437,123 456,119 475,130 494,128 513,114 533,109 552,127 571,126 590,135 609,123 628,138 648,154 667,163 686,172" fill="none" stroke="#2A2724" stroke-width="2.5"/><polyline points="34,206 53,112 72,97 92,34 111,34 130,128 149,81 168,34 187,143 207,128 226,175 245,175 264,128 283,159 302,206 322,190 341,206 360,190 379,159 398,159 418,159 437,159 456,159 475,175 494,175 513,159 533,190 552,206 571,175 590,175 609,159 628,206 648,190 667,175 686,190" fill="none" stroke="#C9A24B" stroke-width="2.5"/><circle cx="34" cy="206" r="3" fill="#C9A24B"/><circle cx="53" cy="112" r="3" fill="#C9A24B"/><circle cx="72" cy="97" r="3" fill="#C9A24B"/><circle cx="92" cy="34" r="3" fill="#C9A24B"/><circle cx="111" cy="34" r="3" fill="#C9A24B"/><circle cx="130" cy="128" r="3" fill="#C9A24B"/><circle cx="149" cy="81" r="3" fill="#C9A24B"/><circle cx="168" cy="34" r="3" fill="#C9A24B"/><circle cx="187" cy="143" r="3" fill="#C9A24B"/><circle cx="207" cy="128" r="3" fill="#C9A24B"/><circle cx="226" cy="175" r="3" fill="#C9A24B"/><circle cx="245" cy="175" r="3" fill="#C9A24B"/><circle cx="264" cy="128" r="3" fill="#C9A24B"/><circle cx="283" cy="159" r="3" fill="#C9A24B"/><circle cx="302" cy="206" r="3" fill="#C9A24B"/><circle cx="322" cy="190" r="3" fill="#C9A24B"/><circle cx="341" cy="206" r="3" fill="#C9A24B"/><circle cx="360" cy="190" r="3" fill="#C9A24B"/><circle cx="379" cy="159" r="3" fill="#C9A24B"/><circle cx="398" cy="159" r="3" fill="#C9A24B"/><circle cx="418" cy="159" r="3" fill="#C9A24B"/><circle cx="437" cy="159" r="3" fill="#C9A24B"/><circle cx="456" cy="159" r="3" fill="#C9A24B"/><circle cx="475" cy="175" r="3" fill="#C9A24B"/><circle cx="494" cy="175" r="3" fill="#C9A24B"/><circle cx="513" cy="159" r="3" fill="#C9A24B"/><circle cx="533" cy="190" r="3" fill="#C9A24B"/><circle cx="552" cy="206" r="3" fill="#C9A24B"/><circle cx="571" cy="175" r="3" fill="#C9A24B"/><circle cx="590" cy="175" r="3" fill="#C9A24B"/><circle cx="609" cy="159" r="3" fill="#C9A24B"/><circle cx="628" cy="206" r="3" fill="#C9A24B"/><circle cx="648" cy="190" r="3" fill="#C9A24B"/><circle cx="667" cy="175" r="3" fill="#C9A24B"/><circle cx="686" cy="190" r="3" fill="#C9A24B"/><text x="34" y="230" font-size="9" fill="#8A8378" text-anchor="middle">05-25</text><text x="72" y="230" font-size="9" fill="#8A8378" text-anchor="middle">05-27</text><text x="111" y="230" font-size="9" fill="#8A8378" text-anchor="middle">05-29</text><text x="149" y="230" font-size="9" fill="#8A8378" text-anchor="middle">05-31</text><text x="187" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-02</text><text x="226" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-04</text><text x="264" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-06</text><text x="302" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-08</text><text x="341" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-10</text><text x="379" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-12</text><text x="418" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-14</text><text x="456" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-16</text><text x="494" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-18</text><text x="533" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-20</text><text x="571" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-22</text><text x="609" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-24</text><text x="648" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-26</text><text x="686" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-28</text></svg></div>
+<div class="card"><div class="tl"><span><i style="background:#2A2724"></i>Gasto diario ($)</span><span><i style="background:#C9A24B"></i>Leads</span></div><svg id="trend-chart" viewBox="0 0 720 240" width="100%" ><line x1="34" y1="34" x2="686" y2="34" stroke="#E7E1D7"/><line x1="34" y1="77" x2="686" y2="77" stroke="#E7E1D7"/><line x1="34" y1="120" x2="686" y2="120" stroke="#E7E1D7"/><line x1="34" y1="163" x2="686" y2="163" stroke="#E7E1D7"/><line x1="34" y1="206" x2="686" y2="206" stroke="#E7E1D7"/><polyline points="34,160 53,34 72,74 92,75 111,91 130,79 149,94 168,80 187,116 207,95 226,72 245,99 264,74 283,95 302,162 322,73 341,119 360,118 379,110 398,99 418,123 437,123 456,119 475,130 494,128 513,114 533,109 552,127 571,126 590,135 609,123 628,138 648,154 667,163 686,172" fill="none" stroke="#2A2724" stroke-width="2.5"/><polyline points="34,206 53,112 72,97 92,34 111,34 130,128 149,81 168,34 187,143 207,128 226,175 245,175 264,128 283,159 302,206 322,190 341,206 360,190 379,159 398,159 418,159 437,159 456,159 475,175 494,175 513,159 533,190 552,206 571,175 590,175 609,159 628,206 648,190 667,175 686,190" fill="none" stroke="#C9A24B" stroke-width="2.5"/><circle cx="34" cy="206" r="3" fill="#C9A24B"/><circle cx="53" cy="112" r="3" fill="#C9A24B"/><circle cx="72" cy="97" r="3" fill="#C9A24B"/><circle cx="92" cy="34" r="3" fill="#C9A24B"/><circle cx="111" cy="34" r="3" fill="#C9A24B"/><circle cx="130" cy="128" r="3" fill="#C9A24B"/><circle cx="149" cy="81" r="3" fill="#C9A24B"/><circle cx="168" cy="34" r="3" fill="#C9A24B"/><circle cx="187" cy="143" r="3" fill="#C9A24B"/><circle cx="207" cy="128" r="3" fill="#C9A24B"/><circle cx="226" cy="175" r="3" fill="#C9A24B"/><circle cx="245" cy="175" r="3" fill="#C9A24B"/><circle cx="264" cy="128" r="3" fill="#C9A24B"/><circle cx="283" cy="159" r="3" fill="#C9A24B"/><circle cx="302" cy="206" r="3" fill="#C9A24B"/><circle cx="322" cy="190" r="3" fill="#C9A24B"/><circle cx="341" cy="206" r="3" fill="#C9A24B"/><circle cx="360" cy="190" r="3" fill="#C9A24B"/><circle cx="379" cy="159" r="3" fill="#C9A24B"/><circle cx="398" cy="159" r="3" fill="#C9A24B"/><circle cx="418" cy="159" r="3" fill="#C9A24B"/><circle cx="437" cy="159" r="3" fill="#C9A24B"/><circle cx="456" cy="159" r="3" fill="#C9A24B"/><circle cx="475" cy="175" r="3" fill="#C9A24B"/><circle cx="494" cy="175" r="3" fill="#C9A24B"/><circle cx="513" cy="159" r="3" fill="#C9A24B"/><circle cx="533" cy="190" r="3" fill="#C9A24B"/><circle cx="552" cy="206" r="3" fill="#C9A24B"/><circle cx="571" cy="175" r="3" fill="#C9A24B"/><circle cx="590" cy="175" r="3" fill="#C9A24B"/><circle cx="609" cy="159" r="3" fill="#C9A24B"/><circle cx="628" cy="206" r="3" fill="#C9A24B"/><circle cx="648" cy="190" r="3" fill="#C9A24B"/><circle cx="667" cy="175" r="3" fill="#C9A24B"/><circle cx="686" cy="190" r="3" fill="#C9A24B"/><text x="34" y="230" font-size="9" fill="#8A8378" text-anchor="middle">05-25</text><text x="72" y="230" font-size="9" fill="#8A8378" text-anchor="middle">05-27</text><text x="111" y="230" font-size="9" fill="#8A8378" text-anchor="middle">05-29</text><text x="149" y="230" font-size="9" fill="#8A8378" text-anchor="middle">05-31</text><text x="187" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-02</text><text x="226" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-04</text><text x="264" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-06</text><text x="302" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-08</text><text x="341" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-10</text><text x="379" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-12</text><text x="418" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-14</text><text x="456" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-16</text><text x="494" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-18</text><text x="533" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-20</text><text x="571" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-22</text><text x="609" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-24</text><text x="648" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-26</text><text x="686" y="230" font-size="9" fill="#8A8378" text-anchor="middle">06-28</text></svg></div>
 
-<div class="foot"><span>Converging Works · documento interno de optimización</span><span>Generado 22 jun 2026</span></div>
-</div></body></html>
+<div class="foot"><span>Converging Works · documento interno de optimización</span><span id="footer-date">Generado 22 jun 2026</span></div>
+</div>
+<script src="assets/report.js"></script>
+<script>
+(function () {
+  var R = window.OppoliaReport;
+  var startInput = document.getElementById("date-start");
+  var endInput = document.getElementById("date-end");
+
+  fetch("data.json").then(function (r) { return r.json(); }).then(function (data) {
+    var allDates = data.daily.map(function (r) { return r.date_start; }).sort();
+    var minDate = allDates[0];
+    var maxDate = allDates[allDates.length - 1];
+    startInput.min = endInput.min = minDate;
+    startInput.max = endInput.max = maxDate;
+    startInput.value = minDate;
+    endInput.value = maxDate;
+
+    document.getElementById("footer-date").textContent = "Generado " + R.fmtDateEs(new Date());
+
+    function tagFor(deltaPct, higherIsBetter) {
+      var good = higherIsBetter ? deltaPct >= 0 : deltaPct <= 0;
+      var mild = Math.abs(deltaPct) < 15;
+      if (good) return { cls: "color:#2E7D54;background:#E9F1E4", txt: (deltaPct >= 0 ? "▲" : "▼") + " mejoró" };
+      if (mild) return { cls: "color:#9A6B1E;background:#FBEFD9", txt: (deltaPct >= 0 ? "▲" : "▼") + " leve · aceptable" };
+      return { cls: "color:#A33B3B;background:#FBE3E0", txt: (deltaPct >= 0 ? "▲" : "▼") + " revisar" };
+    }
+
+    function platformTag(cplOverall, row) {
+      if (!row.leads) return { cls: "background:#FBE3E0;color:#A33B3B", txt: "apagar · 0 leads" };
+      if (cplOverall && row.cpl > cplOverall * 1.3) return { cls: "background:#FBEFD9;color:#9A6B1E", txt: "caro" };
+      return { cls: "background:#E9F1E4;color:#2E7D54", txt: "núcleo" };
+    }
+
+    function creativoTag(cplOverall, row) {
+      if (!row.leads) return { cls: "background:#FBE3E0;color:#A33B3B", txt: "0 leads · apagar" };
+      if (cplOverall && row.cpl > cplOverall * 1.6) return { cls: "background:#FBE3E0;color:#A33B3B", txt: "caro · apagar" };
+      if (cplOverall && row.cpl > cplOverall * 1.15) return { cls: "background:#FBEFD9;color:#9A6B1E", txt: "revisar" };
+      return { cls: "background:#E9F1E4;color:#2E7D54", txt: "eficiente" };
+    }
+
+    function apply() {
+      var start = startInput.value, end = endInput.value;
+      if (!start || !end || start > end) return;
+      var rep = R.computeReport(data, start, end);
+      var prev = R.previousPeriod(start, end);
+      var prevRep = R.computeReport(data, prev.start, prev.end);
+      var days = R.daysBetween(start, end);
+
+      var startLabel = R.fmtDateEs(new Date(start + "T00:00:00"));
+      var endLabel = R.fmtDateEs(new Date(end + "T00:00:00"));
+      document.getElementById("period-label").textContent = "actualizado " + endLabel;
+      document.getElementById("trend-range-label").textContent = "· " + startLabel + " – " + endLabel;
+
+      document.getElementById("kpi2-spend").textContent = R.fmtMoney(rep.kpis.spend);
+      document.getElementById("kpi2-leads").textContent = R.fmtInt(rep.kpis.leads);
+      document.getElementById("kpi2-cpl").textContent = rep.kpis.leads ? R.fmtMoney(rep.kpis.cpl) : "—";
+      document.getElementById("kpi2-ctr").textContent = R.fmtPct(rep.kpis.ctr);
+      document.getElementById("kpi2-ctr-detail").textContent =
+        "CPC $" + rep.kpis.cpc.toFixed(2) + " · CPM $" + rep.kpis.cpm.toFixed(2);
+
+      var cplDelta = prevRep.kpis.cpl ? ((rep.kpis.cpl - prevRep.kpis.cpl) / prevRep.kpis.cpl) * 100 : 0;
+      var leadsDayCur = rep.kpis.leads / days, leadsDayPrev = prevRep.kpis.leads / R.daysBetween(prev.start, prev.end);
+      var leadsDayDelta = leadsDayPrev ? ((leadsDayCur - leadsDayPrev) / leadsDayPrev) * 100 : 0;
+      var ctrDelta = prevRep.kpis.ctr ? ((rep.kpis.ctr - prevRep.kpis.ctr) / prevRep.kpis.ctr) * 100 : 0;
+
+      document.getElementById("cmp-cpl-before").textContent = prevRep.kpis.leads ? R.fmtMoney(prevRep.kpis.cpl) : "—";
+      document.getElementById("cmp-cpl-after").textContent = rep.kpis.leads ? R.fmtMoney(rep.kpis.cpl) : "—";
+      var cplTag = tagFor(cplDelta, false);
+      document.getElementById("cmp-cpl-tag").setAttribute("style", cplTag.cls);
+      document.getElementById("cmp-cpl-tag").textContent = cplTag.txt;
+
+      document.getElementById("cmp-leadsday-before").textContent = leadsDayPrev.toFixed(1);
+      document.getElementById("cmp-leadsday-after").textContent = leadsDayCur.toFixed(1);
+      var ldTag = tagFor(leadsDayDelta, true);
+      document.getElementById("cmp-leadsday-tag").setAttribute("style", ldTag.cls);
+      document.getElementById("cmp-leadsday-tag").textContent = ldTag.txt;
+
+      document.getElementById("cmp-ctr-before").textContent = R.fmtPct(prevRep.kpis.ctr);
+      document.getElementById("cmp-ctr-after").textContent = R.fmtPct(rep.kpis.ctr);
+      var ctrTag = tagFor(ctrDelta, true);
+      document.getElementById("cmp-ctr-tag").setAttribute("style", ctrTag.cls);
+      document.getElementById("cmp-ctr-tag").textContent = ctrTag.txt;
+
+      // FB vs IG
+      var platRows = rep.byPlatform.map(function (p) {
+        var tag = platformTag(rep.kpis.cpl, p);
+        var label = p.key === "facebook" ? "Facebook" : p.key === "instagram" ? "Instagram" : p.key;
+        return (
+          "<tr><td><b>" + label + "</b></td><td class=\"r\">" + R.fmtMoney(p.spend) + "</td><td class=\"r\">" +
+          R.fmtInt(p.impressions) + '</td><td class="r"><b>' + R.fmtInt(p.leads) + "</b></td><td class=\"r\"><b>" +
+          (p.leads ? R.fmtMoney(p.cpl) : "—") + '</b></td><td class="r"><span class="pill" style="' + tag.cls + '">' +
+          tag.txt + "</span></td></tr>"
+        );
+      });
+      R.renderTableRows(document.getElementById("table-plataforma"), platRows);
+
+      // Región
+      R.renderBars(
+        document.getElementById("bars-region"),
+        rep.byRegion.slice(0, 8).map(function (r) {
+          return { label: r.key, value: r.spend, display: R.fmtMoney(r.spend) + " · " + R.fmtInt(r.leads) + "L" };
+        })
+      );
+
+      // Edad / género
+      R.renderBars(
+        document.getElementById("bars-edad-2"),
+        rep.byAge.sort(function (a, b) { return a.key < b.key ? -1 : 1; }).map(function (a) {
+          return { label: a.key, value: a.leads, display: R.fmtInt(a.leads) + " leads" };
+        })
+      );
+      var nucleoLeads = 0, fueraLeads = 0, fueraSpend = 0;
+      rep.byAge.forEach(function (a) {
+        var floor = parseInt(a.key, 10);
+        if (!isNaN(floor) && floor < 35) { fueraLeads += a.leads; fueraSpend += a.spend; }
+        else { nucleoLeads += a.leads; }
+      });
+      document.getElementById("edad-nucleo-leads").textContent = R.fmtInt(nucleoLeads) + " leads";
+      document.getElementById("edad-fuera-leads").textContent = R.fmtInt(fueraLeads) + " leads";
+      document.getElementById("edad-fuera-spend").textContent = R.fmtMoney(fueraSpend);
+
+      var fem = rep.byGender.filter(function (g) { return g.key === "female"; })[0] || { leads: 0 };
+      var mal = rep.byGender.filter(function (g) { return g.key === "male"; })[0] || { leads: 0 };
+      R.renderDonut(
+        document.getElementById("donut-genero"),
+        [
+          { value: fem.leads, color: "#C9A24B" },
+          { value: mal.leads, color: "#2A2724" },
+        ],
+        { r: 62, strokeWidth: 26, cx: 75, centerLabel: "LEADS" }
+      );
+      document.getElementById("genero-f-val").textContent = R.fmtInt(fem.leads);
+      document.getElementById("genero-m-val").textContent = R.fmtInt(mal.leads);
+
+      // Rendimiento por creativo
+      var adRows = rep.byAd.map(function (a) {
+        var tag = creativoTag(rep.kpis.cpl, a);
+        return (
+          "<tr><td><b>" + a.key + '</b></td><td class="r">' + R.fmtMoney(a.spend) + '</td><td class="r">' +
+          R.fmtInt(a.impressions) + '</td><td class="r">' + R.fmtPct(a.ctr) + '</td><td class="r"><b>' +
+          R.fmtInt(a.leads) + '</b></td><td class="r"><b>' + (a.leads ? R.fmtMoney(a.cpl) : "—") +
+          '</b></td><td class="r"><span class="pill" style="' + tag.cls + '">' + tag.txt + "</span></td></tr>"
+        );
+      });
+      R.renderTableRows(document.getElementById("table-creativos"), adRows);
+
+      // Embudo (solo los 3 pasos derivables de Meta)
+      R.renderFunnel(document.getElementById("funnel-dynamic"), [
+        { label: "Impresiones", value: rep.kpis.impressions, color: "#2A2724" },
+        { label: "Clics en enlace", value: rep.kpis.clicks, color: "#6B6457" },
+        { label: "Leads", value: rep.kpis.leads, color: "#C9A24B" },
+      ]);
+
+      // Tendencia diaria
+      R.renderTrend(document.getElementById("trend-chart"), rep.series);
+    }
+
+    startInput.addEventListener("change", apply);
+    endInput.addEventListener("change", apply);
+    apply();
+  });
+})();
+</script>
+</body></html>

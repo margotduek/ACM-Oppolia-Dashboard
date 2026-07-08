@@ -16,6 +16,12 @@ python3 build_report_data.py   # regenera data/meta-ads-resumen.md con las cifra
 
 Requiere un `.env` (no está en el repo) con `META_ACCESS_TOKEN` y `META_OPPOLIA_AD_ACCOUNT_ID`.
 
+`data.json` ahora **sí se publica** (dejó de estar en `.gitignore`): los dos dashboards traen un selector
+de rango de fechas (`assets/report.js`) que lo lee directo en el navegador para recalcular KPIs, tablas,
+edad/género, región, FB vs IG, el embudo y la tendencia diaria de cualquier periodo. Las secciones con
+juicio cualitativo (calidad de leads, citas, playbook, checklist) no se recalculan — siguen fijas al
+último corte redactado a mano.
+
 ### Qué se regenera solo vs qué sigue siendo manual
 
 `cliente.html` e `interno.html` **no se regeneran automáticamente** — no son un template con placeholders,

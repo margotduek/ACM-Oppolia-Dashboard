@@ -122,24 +122,37 @@ tr.win td{background:#F4F8F2}
 .chk .box{width:15px;height:15px;border:2px solid #C9A24B;border-radius:4px;flex:none;margin-top:2px}
 @media (max-width:720px){.kpis,.cards3{grid-template-columns:1fr 1fr}.quotes{grid-template-columns:1fr}.bar-lab{width:120px}.chk{columns:1}.ba{grid-template-columns:1fr}}
 @media print{body{background:#fff}.card,.kpi,.ins,.step{break-inside:avoid}}
+.datefilter{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:#FFFFFF;border:1px solid #E7E1D7;
+ border-radius:12px;padding:14px 18px;margin:20px 0}
+.datefilter label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700}
+.datefilter input[type=date]{border:1px solid #E7E1D7;border-radius:7px;padding:6px 9px;font-size:13px;
+ font-family:inherit;color:#2A2724;background:#FAF8F4}
+.datefilter .fnote{font-size:11.5px;color:#8A8378;flex-basis:100%}
+@media print{.datefilter{display:none}}
 </style></head><body><div class="wrap">
 <span class="kicker">Oppolia México · Reporte de Campaña</span>
 <h1>Resultados de <b>Generación de Leads</b></h1>
-<div class="sub">Meta Ads (Facebook + Instagram) · actualizado 29 jun 2026</div>
+<div class="sub">Meta Ads (Facebook + Instagram) · <span id="period-label">actualizado 29 jun 2026</span></div>
 <div class="gold-rule"></div>
 
+<div class="datefilter">
+  <label>Desde <input type="date" id="date-start"></label>
+  <label>Hasta <input type="date" id="date-end"></label>
+  <span class="fnote">El filtro recalcula inversión, leads, CPL, CTR, edad y sexo. La calidad de los leads, las citas y las recomendaciones vienen de la revisión manual del formulario y quedan fijas al último corte (ver README del repo).</span>
+</div>
+
 <div class="kpis">
-  <div class="kpi"><div class="v">$4,795</div><div class="l">Inversión</div><div class="d">en pauta</div></div>
-  <div class="kpi"><div class="v">79</div><div class="l">Leads generados</div><div class="d">29,985 personas alcanzadas</div></div>
-  <div class="kpi hl"><div class="v">$61</div><div class="l">Costo por lead</div><div class="d">muy competitivo para el giro</div></div>
-  <div class="kpi"><div class="v">2.44%</div><div class="l">CTR</div><div class="d">interés sano en el anuncio</div></div>
+  <div class="kpi"><div class="v" id="kpi-spend">$4,795</div><div class="l">Inversión</div><div class="d">en pauta</div></div>
+  <div class="kpi"><div class="v" id="kpi-leads">79</div><div class="l">Leads generados</div><div class="d" id="kpi-reach">29,985 personas alcanzadas</div></div>
+  <div class="kpi hl"><div class="v" id="kpi-cpl">$61</div><div class="l">Costo por lead</div><div class="d">muy competitivo para el giro</div></div>
+  <div class="kpi"><div class="v" id="kpi-ctr">2.44%</div><div class="l">CTR</div><div class="d">interés sano en el anuncio</div></div>
 </div>
 
 <div class="callout"><div class="big">El costo por lead es <b>bueno</b> — el problema no es cuánto cuestan, sino <b>quién está llegando</b>. La mayoría no es todavía tu cliente de lujo a la medida.</div></div>
 
 <h2><span class="n">★</span>Cómo evolucionó esta semana</h2>
 <div class="h2sub">Comparado con el periodo anterior, después de afinar la campaña hacia tu cliente ideal.</div>
-<div class="cmp"><div class="cmpcard"><div class="l">Costo por lead</div><div class="row"><span class="before">$61</span><span class="arrow">→</span><span class="after">$69</span></div><span class="tag" style="color:#9A6B1E;background:#FBEFD9">▲ leve · aceptable</span></div><div class="cmpcard"><div class="l">Leads por día</div><div class="row"><span class="before">4.6</span><span class="arrow">→</span><span class="after">3.4</span></div><span class="tag" style="color:#9A6B1E;background:#FBEFD9">▼ menos volumen</span></div><div class="cmpcard"><div class="l">CTR</div><div class="row"><span class="before">2.44%</span><span class="arrow">→</span><span class="after">2.59%</span></div><span class="tag" style="color:#2E7D54;background:#E9F1E4">▲ igual/mejor</span></div><div class="cmpcard"><div class="l">Calidad de lead</div><div class="row"><span class="before">baja</span><span class="arrow">→</span><span class="after">alta</span></div><span class="tag" style="color:#2E7D54;background:#E9F1E4">▲ mejoró</span></div></div>
+<div class="cmp"><div class="cmpcard"><div class="l">Costo por lead</div><div class="row"><span class="before" id="cmp-cpl-before">$61</span><span class="arrow">→</span><span class="after" id="cmp-cpl-after">$69</span></div><span class="tag" id="cmp-cpl-tag" style="color:#9A6B1E;background:#FBEFD9">▲ leve · aceptable</span></div><div class="cmpcard"><div class="l">Leads por día</div><div class="row"><span class="before" id="cmp-leadsday-before">4.6</span><span class="arrow">→</span><span class="after" id="cmp-leadsday-after">3.4</span></div><span class="tag" id="cmp-leadsday-tag" style="color:#9A6B1E;background:#FBEFD9">▼ menos volumen</span></div><div class="cmpcard"><div class="l">CTR</div><div class="row"><span class="before" id="cmp-ctr-before">2.44%</span><span class="arrow">→</span><span class="after" id="cmp-ctr-after">2.59%</span></div><span class="tag" id="cmp-ctr-tag" style="color:#2E7D54;background:#E9F1E4">▲ igual/mejor</span></div><div class="cmpcard"><div class="l">Calidad de lead</div><div class="row"><span class="before">baja</span><span class="arrow">→</span><span class="after">alta</span></div><span class="tag" style="color:#2E7D54;background:#E9F1E4">▲ mejoró</span></div></div>
 <div class="card"><div class="big" style="font-size:15px;font-weight:300;line-height:1.5">La <b>calidad de los prospectos mejoró notablemente</b>: de los nuevos del formulario calificador, <b>34 de 36 están en CDMX</b> y piden proyectos serios (integrales, closets, recámaras). Con 3 semanas de datos, el costo por prospecto se mantiene sano ($69). El <b>volumen sí bajó</b> a 3.4 prospectos al día — pero principalmente porque en la última semana se <b>redujo la inversión diaria</b> (de ~$240 a ~$100). Si quieres más volumen con este mismo perfil, basta con regresar el presupuesto.</div></div>
 
 <h2><span class="n">01</span>Calidad de los leads</h2>
@@ -153,11 +166,11 @@ tr.win td{background:#F4F8F2}
 <h2><span class="n">02</span>¿Quién está viendo tus anuncios?</h2>
 <div class="h2sub">El perfil de las personas que han interactuado con tu campaña. Edad y sexo son datos reales de Meta; el perfil profesional y el poder adquisitivo son estimaciones (te explicamos cómo).</div>
 <div class="card"><div class="flex">
-  <div class="col"><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:12px">Edad</div><div class="bars"><div class="bar-row"><div class="bar-lab">25-34</div><div class="bar-track"><div class="bar-fill" style="width:86.4%;background:#D8CDB6"></div></div><div class="bar-val">19 personas</div></div><div class="bar-row"><div class="bar-lab">35-44</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#C9A24B"></div></div><div class="bar-val">22 personas</div></div><div class="bar-row"><div class="bar-lab">45-54</div><div class="bar-track"><div class="bar-fill" style="width:86.4%;background:#C9A24B"></div></div><div class="bar-val">19 personas</div></div><div class="bar-row"><div class="bar-lab">55-64</div><div class="bar-track"><div class="bar-fill" style="width:54.5%;background:#C9A24B"></div></div><div class="bar-val">12 personas</div></div><div class="bar-row"><div class="bar-lab">65+</div><div class="bar-track"><div class="bar-fill" style="width:31.8%;background:#D8CDB6"></div></div><div class="bar-val">7 personas</div></div></div>
-   <div style="font-size:12px;color:#8A8378;margin-top:10px">La mayoría está entre <b style="color:#2A2724">35 y 64 años</b> (53 personas) — el corazón de tu cliente. También llega público más joven que estamos afinando.</div></div>
+  <div class="col"><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:12px">Edad</div><div class="bars" id="bars-edad"><div class="bar-row"><div class="bar-lab">25-34</div><div class="bar-track"><div class="bar-fill" style="width:86.4%;background:#D8CDB6"></div></div><div class="bar-val">19 personas</div></div><div class="bar-row"><div class="bar-lab">35-44</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#C9A24B"></div></div><div class="bar-val">22 personas</div></div><div class="bar-row"><div class="bar-lab">45-54</div><div class="bar-track"><div class="bar-fill" style="width:86.4%;background:#C9A24B"></div></div><div class="bar-val">19 personas</div></div><div class="bar-row"><div class="bar-lab">55-64</div><div class="bar-track"><div class="bar-fill" style="width:54.5%;background:#C9A24B"></div></div><div class="bar-val">12 personas</div></div><div class="bar-row"><div class="bar-lab">65+</div><div class="bar-track"><div class="bar-fill" style="width:31.8%;background:#D8CDB6"></div></div><div class="bar-val">7 personas</div></div></div>
+   <div style="font-size:12px;color:#8A8378;margin-top:10px">La mayoría está entre <b style="color:#2A2724">35 y 64 años</b> — el corazón de tu cliente. También llega público más joven que estamos afinando.</div></div>
   <div class="col"><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8A8378;font-weight:700;margin-bottom:12px">Sexo</div>
-   <div class="flex" style="gap:18px"><div style="flex:none"><svg viewBox="0 0 148 148" width="148" height="148"><circle cx="74.0" cy="74.0" r="61.0" fill="none" stroke="#C9A24B" stroke-width="26" stroke-dasharray="186.72 196.55" stroke-dashoffset="0.00" transform="rotate(-90 74.0 74.0)"/><circle cx="74.0" cy="74.0" r="61.0" fill="none" stroke="#2A2724" stroke-width="26" stroke-dasharray="196.55 186.72" stroke-dashoffset="-186.72" transform="rotate(-90 74.0 74.0)"/><text x="74.0" y="72.0" text-anchor="middle" font-size="34" font-weight="700" fill="#2A2724">78</text><text x="74.0" y="92.0" text-anchor="middle" font-size="11" fill="#8A8378" letter-spacing="1">PERSONAS</text></svg></div>
-   <ul class="legend" style="flex:1"><li><span class="dot" style="background:#C9A24B"></span>Mujeres<span class="lv">38 · 49%</span></li><li><span class="dot" style="background:#2A2724"></span>Hombres<span class="lv">40 · 51%</span></li></ul></div>
+   <div class="flex" style="gap:18px"><div style="flex:none"><svg id="donut-sexo" viewBox="0 0 148 148" width="148" height="148"><circle cx="74.0" cy="74.0" r="61.0" fill="none" stroke="#C9A24B" stroke-width="26" stroke-dasharray="186.72 196.55" stroke-dashoffset="0.00" transform="rotate(-90 74.0 74.0)"/><circle cx="74.0" cy="74.0" r="61.0" fill="none" stroke="#2A2724" stroke-width="26" stroke-dasharray="196.55 186.72" stroke-dashoffset="-186.72" transform="rotate(-90 74.0 74.0)"/><text x="74.0" y="72.0" text-anchor="middle" font-size="34" font-weight="700" fill="#2A2724">78</text><text x="74.0" y="92.0" text-anchor="middle" font-size="11" fill="#8A8378" letter-spacing="1">PERSONAS</text></svg></div>
+   <ul class="legend" style="flex:1"><li><span class="dot" style="background:#C9A24B"></span>Mujeres<span class="lv" id="sexo-f-val">38 · 49%</span></li><li><span class="dot" style="background:#2A2724"></span>Hombres<span class="lv" id="sexo-m-val">40 · 51%</span></li></ul></div>
    <div style="font-size:12px;color:#8A8378;margin-top:10px">Reparto prácticamente parejo entre mujeres y hombres.</div></div>
 </div></div>
 
@@ -170,7 +183,7 @@ tr.win td{background:#F4F8F2}
    <p><b>interioristas y arquitectos</b> identificados entre tus prospectos. Es tu público premium: ellos llevan a Oppolia a proyectos de alto nivel. La campaña B2B está dirigida justo a este perfil.</p></div>
   <div class="ins" style="grid-column:span 2"><span class="tag" style="background:#FBEFD9;color:#9A6B1E">Poder adquisitivo · estimación</span>
    <p style="margin-top:10px"><b>Meta no comparte el ingreso de cada persona en México</b>, así que no podemos decir cuánto gana cada quien. Lo que sí sabemos: la campaña está dirigida a <b>comportamiento de "prefieren bienes de alto valor"</b> y a <b>zonas premium</b>. Por dónde se está mostrando hoy:</p>
-   <div style="margin-top:12px"><div class="bars"><div class="bar-row"><div class="bar-lab">CDMX</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#C9A24B"></div></div><div class="bar-val">$2,515 · 0L</div></div><div class="bar-row"><div class="bar-lab">Estado de México</div><div class="bar-track"><div class="bar-fill" style="width:91.3%;background:#C97B5A"></div></div><div class="bar-val">$2,296 · 0L</div></div></div></div>
+   <div style="margin-top:12px"><div class="bars" id="bars-poder"><div class="bar-row"><div class="bar-lab">CDMX</div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#C9A24B"></div></div><div class="bar-val">$2,515 · 0L</div></div><div class="bar-row"><div class="bar-lab">Estado de México</div><div class="bar-track"><div class="bar-fill" style="width:91.3%;background:#C97B5A"></div></div><div class="bar-val">$2,296 · 0L</div></div></div></div>
    <p style="margin-top:10px;font-size:11.5px">Hoy se reparte entre CDMX y zonas del Estado de México. La recomendación (abajo) es concentrarlo aún más en colonias de NSE alto (Polanco, Lomas, Pedregal, Santa Fe, Interlomas).</p></div>
 </div>
 
@@ -194,5 +207,111 @@ tr.win td{background:#F4F8F2}
 <h2><span class="n">05</span>Recomendaciones</h2>
 <div class="card" style="padding-top:6px;padding-bottom:6px"><div class="rec"><div class="num">1</div><div><div class="t">Corregir el mensaje: lujo a la medida, no “muebles”</div><div class="d">El anuncio actual hace que la gente espere una mueblería. Hay que comunicar desde el primer segundo que Oppolia es <b>diseño y carpintería de lujo a la medida</b> (cocinas, closets, interiores), distribuidor oficial exclusivo. Esto filtra solo: quien busca muebles baratos no entra.</div></div></div><div class="rec"><div class="num">2</div><div><div class="t">Preparar la reactivación para la apertura del showroom</div><div class="d">Hay <b>9 leads tibios esperando la inauguración</b> y varios más que piden “verlo físico”. Vale la pena una lista de invitados y un evento de apertura: ese es tu momento de mayor conversión, porque el KPI de la marca es justamente la cita al showroom.</div></div></div><div class="rec"><div class="num">3</div><div><div class="t">Ruta VIP para interioristas y arquitectos</div><div class="d">Ya están llegando interioristas que quieren a Oppolia para sus proyectos —exactamente el público premium que define tu estrategia—. Merecen un trato distinto (catálogo profesional, condiciones B2B) y respuesta inmediata.</div></div></div><div class="rec"><div class="num">4</div><div><div class="t">Responder más rápido y por WhatsApp</div><div class="d"><b>37% de los leads no se pudieron contactar.</b> Un lead premium que llena un formulario y no recibe respuesta en minutos se enfría. Contacto inmediato por WhatsApp + llamada el mismo día sube mucho la conversión.</div></div></div></div>
 
-<div class="foot"><span>Oppolia México · Diseño inteligente. Calidad sin concesiones.</span><span>Generado 22 jun 2026</span></div>
-</div></body></html>
+<div class="foot"><span>Oppolia México · Diseño inteligente. Calidad sin concesiones.</span><span id="footer-date">Generado 22 jun 2026</span></div>
+</div>
+<script src="assets/report.js"></script>
+<script>
+(function () {
+  var R = window.OppoliaReport;
+  var startInput = document.getElementById("date-start");
+  var endInput = document.getElementById("date-end");
+
+  fetch("data.json").then(function (r) { return r.json(); }).then(function (data) {
+    var allDates = data.daily.map(function (r) { return r.date_start; }).sort();
+    var minDate = allDates[0];
+    var maxDate = allDates[allDates.length - 1];
+    startInput.min = endInput.min = minDate;
+    startInput.max = endInput.max = maxDate;
+    startInput.value = minDate;
+    endInput.value = maxDate;
+
+    document.getElementById("footer-date").textContent = "Generado " + R.fmtDateEs(new Date());
+
+    function tagFor(deltaPct, higherIsBetter) {
+      var good = higherIsBetter ? deltaPct >= 0 : deltaPct <= 0;
+      var mild = Math.abs(deltaPct) < 15;
+      if (good) return { cls: "color:#2E7D54;background:#E9F1E4", txt: (deltaPct >= 0 ? "▲" : "▼") + " mejoró" };
+      if (mild) return { cls: "color:#9A6B1E;background:#FBEFD9", txt: (deltaPct >= 0 ? "▲" : "▼") + " leve · aceptable" };
+      return { cls: "color:#A33B3B;background:#FBE3E0", txt: (deltaPct >= 0 ? "▲" : "▼") + " revisar" };
+    }
+
+    function apply() {
+      var start = startInput.value, end = endInput.value;
+      if (!start || !end || start > end) return;
+      var rep = R.computeReport(data, start, end);
+      var prev = R.previousPeriod(start, end);
+      var prevRep = R.computeReport(data, prev.start, prev.end);
+      var days = R.daysBetween(start, end);
+
+      document.getElementById("period-label").textContent =
+        R.fmtDateEs(new Date(start + "T00:00:00")) + " – " + R.fmtDateEs(new Date(end + "T00:00:00"));
+
+      document.getElementById("kpi-spend").textContent = R.fmtMoney(rep.kpis.spend);
+      document.getElementById("kpi-leads").textContent = R.fmtInt(rep.kpis.leads);
+      document.getElementById("kpi-reach").textContent = R.fmtInt(rep.kpis.reach) + " personas alcanzadas";
+      document.getElementById("kpi-cpl").textContent = rep.kpis.leads ? R.fmtMoney(rep.kpis.cpl) : "—";
+      document.getElementById("kpi-ctr").textContent = R.fmtPct(rep.kpis.ctr);
+
+      var cplDelta = prevRep.kpis.cpl ? ((rep.kpis.cpl - prevRep.kpis.cpl) / prevRep.kpis.cpl) * 100 : 0;
+      var leadsDayCur = rep.kpis.leads / days, leadsDayPrev = prevRep.kpis.leads / R.daysBetween(prev.start, prev.end);
+      var leadsDayDelta = leadsDayPrev ? ((leadsDayCur - leadsDayPrev) / leadsDayPrev) * 100 : 0;
+      var ctrDelta = prevRep.kpis.ctr ? ((rep.kpis.ctr - prevRep.kpis.ctr) / prevRep.kpis.ctr) * 100 : 0;
+
+      document.getElementById("cmp-cpl-before").textContent = prevRep.kpis.leads ? R.fmtMoney(prevRep.kpis.cpl) : "—";
+      document.getElementById("cmp-cpl-after").textContent = rep.kpis.leads ? R.fmtMoney(rep.kpis.cpl) : "—";
+      var cplTag = tagFor(cplDelta, false);
+      document.getElementById("cmp-cpl-tag").setAttribute("style", cplTag.cls);
+      document.getElementById("cmp-cpl-tag").textContent = cplTag.txt;
+
+      document.getElementById("cmp-leadsday-before").textContent = leadsDayPrev.toFixed(1);
+      document.getElementById("cmp-leadsday-after").textContent = leadsDayCur.toFixed(1);
+      var ldTag = tagFor(leadsDayDelta, true);
+      document.getElementById("cmp-leadsday-tag").setAttribute("style", ldTag.cls);
+      document.getElementById("cmp-leadsday-tag").textContent = ldTag.txt;
+
+      document.getElementById("cmp-ctr-before").textContent = R.fmtPct(prevRep.kpis.ctr);
+      document.getElementById("cmp-ctr-after").textContent = R.fmtPct(rep.kpis.ctr);
+      var ctrTag = tagFor(ctrDelta, true);
+      document.getElementById("cmp-ctr-tag").setAttribute("style", ctrTag.cls);
+      document.getElementById("cmp-ctr-tag").textContent = ctrTag.txt;
+
+      R.renderBars(
+        document.getElementById("bars-edad"),
+        rep.byAge.sort(function (a, b) { return a.key < b.key ? -1 : 1; }).map(function (a) {
+          return { label: a.key, value: a.leads, display: R.fmtInt(a.leads) + " leads" };
+        })
+      );
+
+      var fem = rep.byGender.filter(function (g) { return g.key === "female"; })[0] || { leads: 0 };
+      var mal = rep.byGender.filter(function (g) { return g.key === "male"; })[0] || { leads: 0 };
+      var totalG = fem.leads + mal.leads;
+      R.renderDonut(
+        document.getElementById("donut-sexo"),
+        [
+          { value: fem.leads, color: "#C9A24B" },
+          { value: mal.leads, color: "#2A2724" },
+        ],
+        { r: 61, strokeWidth: 26, cx: 74, centerLabel: "LEADS" }
+      );
+      document.getElementById("sexo-f-val").textContent =
+        R.fmtInt(fem.leads) + " · " + (totalG ? Math.round((fem.leads / totalG) * 100) : 0) + "%";
+      document.getElementById("sexo-m-val").textContent =
+        R.fmtInt(mal.leads) + " · " + (totalG ? Math.round((mal.leads / totalG) * 100) : 0) + "%";
+
+      var topRegions = rep.byRegion.slice(0, 2);
+      R.renderBars(
+        document.getElementById("bars-poder"),
+        topRegions.map(function (r, i) {
+          return { label: r.key, value: r.spend, display: R.fmtMoney(r.spend) + " · " + R.fmtInt(r.leads) + "L" };
+        }),
+        {}
+      );
+    }
+
+    startInput.addEventListener("change", apply);
+    endInput.addEventListener("change", apply);
+    apply();
+  });
+})();
+</script>
+</body></html>

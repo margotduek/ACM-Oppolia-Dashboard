@@ -139,6 +139,61 @@ def main():
             print(f"  ! {key} failed: {e}")
             data[key] = []
 
+    # Same breakdowns again, but day-by-day, so the dashboards' date-range
+    # picker can recompute everything client-side for an arbitrary window
+    # instead of only showing the lifetime totals above.
+    print("→ campaign insights (daily)")
+    data["campaign_insights_daily"] = paginate(
+        f"{act}/insights",
+        {
+            "fields": f"campaign_id,campaign_name,{INSIGHT_FIELDS}",
+            "level": "campaign",
+            "date_preset": "maximum",
+            "time_increment": 1,
+            "limit": 500,
+        },
+        token,
+        max_pages=60,
+    )
+
+    print("→ ad insights (daily)")
+    data["ad_insights_daily"] = paginate(
+        f"{act}/insights",
+        {
+            "fields": f"ad_id,ad_name,adset_id,campaign_id,{INSIGHT_FIELDS}",
+            "level": "ad",
+            "date_preset": "maximum",
+            "time_increment": 1,
+            "limit": 500,
+        },
+        token,
+        max_pages=60,
+    )
+
+    daily_breakdowns = {
+        "by_age_gender_daily": "age,gender",
+        "by_region_daily": "region",
+        "by_platform_daily": "publisher_platform",
+    }
+    for key, brk in daily_breakdowns.items():
+        print(f"→ breakdown {key}")
+        try:
+            data[key] = paginate(
+                f"{act}/insights",
+                {
+                    "fields": INSIGHT_FIELDS,
+                    "breakdowns": brk,
+                    "date_preset": "maximum",
+                    "time_increment": 1,
+                    "limit": 500,
+                },
+                token,
+                max_pages=60,
+            )
+        except Exception as e:
+            print(f"  ! {key} failed: {e}")
+            data[key] = []
+
     out = Path("data.json")
     out.write_text(json.dumps(data, indent=2, ensure_ascii=False))
     print(f"\n✓ wrote {out} ({out.stat().st_size:,} bytes)")
